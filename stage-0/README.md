@@ -14,7 +14,9 @@ A simple Express.js API that classifies names by gender using the Genderize.io A
 - Node.js (v14 or higher)
 - npm or yarn
 
-## Installation
+## Build Instructions
+
+No build step required. This is a runtime Node.js application.
 
 1. Clone the repository
 2. Install dependencies:
@@ -23,7 +25,7 @@ A simple Express.js API that classifies names by gender using the Genderize.io A
 npm install
 ```
 
-## Usage
+## Run Instructions
 
 Start the server:
 
