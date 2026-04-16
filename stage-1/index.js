@@ -41,6 +41,7 @@ app.post("/api/profiles", async (req, res) => {
 			});
 		}
 	} catch (err) {
+		console.log(err)
 		return res.status(502).json({
 			status: "error",
 			message: `There was an error`,
