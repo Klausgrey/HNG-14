@@ -82,7 +82,7 @@ A text editor is software used to write plain text. For programmers, it's the pr
 
 ## 2. Compilers vs Interpreters
 
-Some people believe that when we run code, we run it through the internet — not knowing it's the computer hardware that is actually running the code. This brings us to the idea of **compilers** and **interpreters**. They are both ways of running code, but they do so differently:
+Some people believe that when we run code, we run it through the internet, not knowing it's the computer hardware that is actually running the code. This brings us to the idea of **compilers** and **interpreters**. They are both ways of running code, but they do so differently:
 
 - A **compiler** translates the entire file at once before it runs, creating a separate executable file.
 - An **interpreter** reads and executes the code one line at a time.
