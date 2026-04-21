@@ -146,3 +146,20 @@ Currently, no automated test suite is configured. To test the API:
 - **dotenv**: Environment variable management
 - **mongodb**: MongoDB driver
 - **uuidv7**: UUID generation
+models/
+  user.js
+  doctor.js
+  appointment.js
+routes/
+  authRoutes.js
+  doctorRoutes.js
+  appointmentRoutes.js
+controllers/
+  authController.js
+  doctorController.js
+  appointmentController.js
+middleware/
+  auth.js
+  roleCheck.js
+app.js
+server.js
