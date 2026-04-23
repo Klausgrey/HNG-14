@@ -26,6 +26,11 @@ const getProfiles = async (req, res) => {
 				$gte: Number(req.query.min_country_probability),
 			};
 
+		const validSortFields = ["age", "created_at", "gender_probability"];
+		if (req.req.sort_by && !validSortFields.includes(req.query.sort_by))
+			return res
+				.status(422)
+				.json({ status: "error", message: "Invalid query parameter" });
 		const sort = {};
 
 		if (req.query.sort_by) {
@@ -55,7 +60,6 @@ const getProfiles = async (req, res) => {
 		res.status(500).json({ status: "error", message: "Server error" });
 	}
 };
-
 
 const searchProfiles = async (req, res) => {
 	try {
@@ -118,4 +122,34 @@ const searchProfiles = async (req, res) => {
 	}
 };
 
-module.exports = { getProfiles, searchProfiles };
+const createProfile = async (req, res) => {
+	const {
+		name,
+		gender,
+		gender_probability,
+		age,
+		age_group,
+		country_id,
+		country_name,
+		country_probability,
+	} = req.body;
+
+	try {
+		const result = await Profile.create({
+			name,
+			gender,
+			gender_probability,
+			age,
+			age_group,
+			country_id,
+			country_name,
+			country_probability,
+		});
+
+		res.status(201).json({ status: "success", data: result });
+	} catch (err) {
+		res.status(500).json({ status: "error", message: "Server error" });
+	}
+};
+
+module.exports = { getProfiles, searchProfiles, createProfile };

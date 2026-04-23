@@ -186,3 +186,33 @@ Common error scenarios:
 - Minimum results per page is 1
 - Search query interpretation may fail for ambiguous inputs
 - Country filtering requires valid ISO country names
+
+## Natural Language Parsing Approach
+
+The `/api/profiles/search` endpoint uses a rule-based parser (`nlpParser.js`)
+with no AI or LLMs. It works by scanning the query string for specific keywords
+and patterns using `.includes()` and regex.
+
+### Keyword Mappings
+
+| Query Pattern | Filter Applied |
+|---|---|
+| "male" / "males" | gender = male |
+| "female" / "females" | gender = female |
+| "young" | min_age = 16, max_age = 24 |
+| "above X" | min_age = X |
+| "below X" | max_age = X |
+| "child" / "children" | age_group = child |
+| "teenager" / "teenagers" | age_group = teenager |
+| "adult" / "adults" | age_group = adult |
+| "senior" / "seniors" | age_group = senior |
+| "from [country]" | country_id = ISO code |
+
+### Parser Limitations
+
+- Multi-word country names ("south africa", "united states") are not supported
+  — the regex only captures one word after "from"
+- "young" is not a stored age group, it maps to min_age/max_age only
+- No synonym support ("elderly" won't map to senior)
+- Queries with no recognizable keywords return an error
+- Country matching is case-insensitive but spelling must be exact
