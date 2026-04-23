@@ -27,7 +27,7 @@ const getProfiles = async (req, res) => {
 			};
 
 		const validSortFields = ["age", "created_at", "gender_probability"];
-		if (req.req.sort_by && !validSortFields.includes(req.query.sort_by))
+		if (req.query.sort_by && !validSortFields.includes(req.query.sort_by))
 			return res
 				.status(422)
 				.json({ status: "error", message: "Invalid query parameter" });
@@ -57,6 +57,7 @@ const getProfiles = async (req, res) => {
 			data: profiles,
 		});
 	} catch (err) {
+		console.log(err.message)
 		res.status(500).json({ status: "error", message: "Server error" });
 	}
 };
